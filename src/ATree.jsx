@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { routerRedux } from 'react-router-redux';
+import * as routerRedux from 'react-router-redux';
 import Spin from 'antd/lib/spin';
 import Menu from 'antd/lib/menu';
 // import styles from './MenuTree.scss';
@@ -78,19 +78,31 @@ class ATree extends Component {
   }
 
   render() {
-    const { dataSource, loading, keyPath: selectedKeys } = this.props;
+    const { dataSource, loading, width } = this.props;
+
+    const selectedKeys = this.props.selectedKeys ? this.props.selectedKeys.split(',').reverse() : [];
 
     const marginBottom = calMarginBottom(dataSource, selectedKeys);
 
+    const style = {
+      width,
+      marginBottom,
+    };
+
     return (
       <Spin spinning={loading}>
-        <Menu mode="vertical" selectedKeys={selectedKeys} openKeys={selectedKeys} onClick={({ keyPath }) => this.click(keyPath)} className="styles._" style={{ marginBottom }}>
+        <Menu mode="vertical" selectedKeys={selectedKeys} openKeys={selectedKeys} onClick={({ keyPath }) => this.click(keyPath)} className="styles._" style={style}>
           {dataSource.map(node => recursive(node, [], this.click))}
         </Menu>
       </Spin>
     );
   }
 }
+
+
+ATree.defaultProps = {
+  width: 160,
+};
 
 
 export default connect()(ATree);

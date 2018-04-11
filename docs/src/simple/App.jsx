@@ -3,13 +3,6 @@ import axios from 'axios'; // eslint-disable-line import/no-extraneous-dependenc
 import ATree from '../../../src/ATree.jsx';
 
 
-const store = {
-  subscribe() {},
-  dispatch() {},
-  getState() {},
-};
-
-
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -28,9 +21,33 @@ export default class App extends Component {
     }));
   }
 
+  store = {
+    subscribe() { },
+    dispatch: ({ type, payload }) => {
+      if (type === '@@router/CALL_HISTORY_METHOD') {
+        const { method, args } = payload;
+        if (method === 'push') {
+          const { router } = this.props;
+          const { pathname } = args[0];
+          router.setRoute(pathname);
+          const trigger = this.state.trigger + 1;
+          this.setState({ trigger });
+        } else {
+          console.log(method, args);
+        }
+      } else {
+        console.log(type, payload);
+      }
+    },
+    getState() { },
+  }
+
   render() {
     const { menus, loading } = this.state;
 
-    return <ATree store={store} dataSource={menus} loading={loading} keyPath={[]} />;
+    const menuIds = this.props.router.getRoute(1); // -> /resources/{menuIds}
+    // const keyPath = menuIds ? menuIds.split(',') : [];
+
+    return <ATree store={this.store} dataSource={menus} loading={loading} prefix="/resources" selectedKeys={menuIds} />;
   }
 }

@@ -6,7 +6,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 var React = require('react');
 var React__default = _interopDefault(React);
 var reactRedux = require('react-redux');
-var reactRouterRedux = require('react-router-redux');
+var routerRedux = require('react-router-redux');
 var Spin = _interopDefault(require('antd/lib/spin'));
 var Menu = _interopDefault(require('antd/lib/menu'));
 
@@ -79,18 +79,25 @@ var ATree = (function (Component$$1) {
     var postfix = ref.postfix; if ( postfix === void 0 ) postfix = '';
     var pathname = prefix + "/" + (keyPath.reverse()) + postfix;
     var location = { pathname: pathname };
-    this.props.dispatch(reactRouterRedux.routerRedux.push(location));
+    this.props.dispatch(routerRedux.push(location));
   };
 
   ATree.prototype.render = function render () {
     var this$1 = this;
 
     var ref = this.props;
-    var tree = ref.tree;
+    var dataSource = ref.dataSource;
     var loading = ref.loading;
-    var selectedKeys = ref.keyPath;
+    var width = ref.width;
 
-    var marginBottom = calMarginBottom(tree, selectedKeys);
+    var selectedKeys = this.props.selectedKeys ? this.props.selectedKeys.split(',').reverse() : [];
+
+    var marginBottom = calMarginBottom(dataSource, selectedKeys);
+
+    var style = {
+      width: width,
+      marginBottom: marginBottom,
+    };
 
     return (
       React__default.createElement( Spin, { spinning: loading },
@@ -98,8 +105,8 @@ var ATree = (function (Component$$1) {
           var keyPath = ref.keyPath;
 
           return this$1.click(keyPath);
-    }, className: "styles._", style: { marginBottom: marginBottom } },
-          tree.map(function (node) { return recursive(node, [], this$1.click); })
+    }, className: "styles._", style: style },
+          dataSource.map(function (node) { return recursive(node, [], this$1.click); })
         )
       )
     );
@@ -107,6 +114,11 @@ var ATree = (function (Component$$1) {
 
   return ATree;
 }(React.Component));
+
+
+ATree.defaultProps = {
+  width: 160,
+};
 
 
 var ATree$1 = reactRedux.connect()(ATree);
