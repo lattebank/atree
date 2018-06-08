@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import * as routerRedux from 'react-router-redux';
 import Spin from 'antd/lib/spin';
 import Menu from 'antd/lib/menu';
-// import styles from './MenuTree.scss';
 
 
 const SubMenu = Menu.SubMenu;
@@ -78,7 +77,7 @@ class ATree extends Component {
   }
 
   render() {
-    const { dataSource, loading, width } = this.props;
+    const { dataSource, loading, width, className } = this.props;
 
     const selectedKeys = this.props.selectedKeys ? this.props.selectedKeys.split(',').reverse() : [];
 
@@ -91,7 +90,7 @@ class ATree extends Component {
 
     return (
       <Spin spinning={loading}>
-        <Menu mode="vertical" selectedKeys={selectedKeys} openKeys={selectedKeys} onClick={({ keyPath }) => this.click(keyPath)} className="styles._" style={style}>
+        <Menu mode="vertical" selectedKeys={selectedKeys} openKeys={selectedKeys} onClick={({ keyPath }) => this.click(keyPath)} className={className || 'another-tree'} style={style}>
           {dataSource.map(node => recursive(node, [], this.click))}
         </Menu>
       </Spin>

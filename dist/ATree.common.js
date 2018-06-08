@@ -10,9 +10,6 @@ var routerRedux = require('react-router-redux');
 var Spin = _interopDefault(require('antd/lib/spin'));
 var Menu = _interopDefault(require('antd/lib/menu'));
 
-// import styles from './MenuTree.scss';
-
-
 var SubMenu = Menu.SubMenu;
 var MenuItem = Menu.Item;
 
@@ -89,6 +86,7 @@ var ATree = (function (Component$$1) {
     var dataSource = ref.dataSource;
     var loading = ref.loading;
     var width = ref.width;
+    var className = ref.className;
 
     var selectedKeys = this.props.selectedKeys ? this.props.selectedKeys.split(',').reverse() : [];
 
@@ -105,7 +103,7 @@ var ATree = (function (Component$$1) {
           var keyPath = ref.keyPath;
 
           return this$1.click(keyPath);
-    }, className: "styles._", style: style },
+    }, className: className || 'another-tree', style: style },
           dataSource.map(function (node) { return recursive(node, [], this$1.click); })
         )
       )
