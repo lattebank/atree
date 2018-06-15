@@ -1,4 +1,4 @@
-/*! @lattebank/atree v0.0.2 (c) 2018 */
+/*! @lattebank/atree v0.1.0 (c) 2018 */
 'use strict';
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
