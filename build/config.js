@@ -1,8 +1,10 @@
 const path = require('path');
-const buble = require('rollup-plugin-buble');
+const commonjs = require('rollup-plugin-commonjs');
+const resolve = require('rollup-plugin-node-resolve');
+const babel = require('rollup-plugin-babel');
 const version = process.env.VERSION || require('../package.json').version;
 
-const banner = '/*! @lattebank/atree v' + version + ' (c) 2018 */';
+const banner = '/*! @lattebank/atree v' + version + ' (c) 2019 */';
 
 const builds = {
   'ATree': {
@@ -13,7 +15,8 @@ const builds = {
       'react-redux',
       'react-router-redux',
       'antd/lib/spin',
-      'antd/lib/menu',
+      // 'antd/lib/menu',
+      'rc-menu',
     ],
     format: 'cjs',
     banner,
@@ -29,7 +32,13 @@ function genConfig(opts) {
     banner: opts.banner,
     name: 'ATree',
     plugins: [
-      buble(),
+      commonjs({ sourceMap: false}),
+      resolve(),
+      babel({
+        exclude: 'node_modules/**',
+        babelrc: false,
+        presets: ['es2015-rollup', 'stage-0', 'react'],
+      }),
     ]
   };
 
