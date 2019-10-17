@@ -1,4 +1,4 @@
-/*! @lattebank/atree v0.1.1 (c) 2019 */
+/*! @lattebank/atree v0.1.2 (c) 2019 */
 'use strict';
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
@@ -336,7 +336,7 @@ var SubMenu$1 = Menu.SubMenu;
 var MenuItem$1 = Menu.Item;
 
 function calMarginBottom(tree, selectedKeys) {
-  var MENU_HEIGHT = 42;
+  var MENU_HEIGHT = 44; // MAGIC
 
   var INITIAL_MARGIN = tree.length;
 

@@ -1,0 +1,23 @@
+.ant-menu.another-tree .ant-menu-submenu {
+    position: relative;
+}
+
+.ant-menu.another-tree .ant-menu-vertical .ant-menu-item:not(:last-child) {
+  margin-bottom: 4px;
+}
+
+.ant-menu.another-tree .ant-menu-submenu-vertical > .ant-menu {
+  top: -4px;
+  left: 100%;
+  position: absolute;
+  margin-left: 4px;
+  z-index: 1050;
+}
+
+.ant-menu.another-tree .ant-menu-submenu-vertical > .ant-menu-submenu-title:after {
+  font-family: anticon !important;
+  font-size: 12px;
+  position: absolute;
+  content: "\E61F";
+  right: 16px;
+}

@@ -10,7 +10,7 @@ const MenuItem = Menu.Item;
 
 
 function calMarginBottom(tree, selectedKeys) {
-  const MENU_HEIGHT = 42;
+  const MENU_HEIGHT = 44; // MAGIC
 
   const INITIAL_MARGIN = tree.length;
 

@@ -10,10 +10,35 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <link rel="stylesheet" href="./dist/antd-2.12.6.css" />
+  <link rel="stylesheet" href="./dist/antd-3.3.3.css" />
   <style>
     .App {
       margin: 30px;
+    }
+  </style>
+  <style>
+    .ant-menu.another-tree .ant-menu-submenu {
+      position: relative;
+    }
+
+    .ant-menu.another-tree .ant-menu-vertical .ant-menu-item:not(:last-child) {
+      margin-bottom: 4px;
+    }
+
+    .ant-menu.another-tree .ant-menu-submenu-vertical > .ant-menu {
+      top: -4px;
+      left: 100%;
+      position: absolute;
+      margin-left: 4px;
+      z-index: 1050;
+    }
+
+    .ant-menu.another-tree .ant-menu-submenu-vertical > .ant-menu-submenu-title:after {
+      font-family: anticon !important;
+      font-size: 12px;
+      position: absolute;
+      content: "\E61F";
+      right: 16px;
     }
   </style>
 </head>
@@ -23,7 +48,7 @@
   <hr style="margin: 60px 30px; border: 1px solid #f2f2f2" />
 
   <script src="./dist/director.min.js"></script>
-  <script src="./dist/simple-09b67.js"></script>
+  <script src="./dist/simple-bee42.js"></script>
   <!-- <script src="http://0.0.0.0:3001/static/js/simple.js"></script> -->
 </body>
 
